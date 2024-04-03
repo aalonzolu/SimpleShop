@@ -1,0 +1,38 @@
+﻿services:
+  simpleshopmvc:
+    image: simpleshopmvc
+    build:
+      context: .
+      dockerfile: SimpleShopMVC/Dockerfile
+    ports:
+        - "5000:8080"
+    depends_on:
+        - mysql
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Development
+        - MYSQL_HOST=mysql
+        - MYSQL_USER=sa
+        - MYSQL_PASSWORD=Password123
+        - MYSQL_DATABASE=SimpleShop
+    networks:
+      - simpleshop
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_DATABASE: SimpleShop
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: Password123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+        - simpleshop
+  
+volumes:
+    mysql-data:
+
+networks:
+  simpleshop:
+    driver: bridge

@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  simpleshopmvc:
+    build:
+      context: "/Users/andresalonzo/RiderProjects/SimpleShop"
+      dockerfile: "SimpleShopMVC/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/SimpleShopMVC.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net8.0/SimpleShopMVC.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "simpleshopmvc:dev"
+    ports: []
+    volumes:
+    - "/Users/andresalonzo/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/andresalonzo/RiderProjects/SimpleShop/SimpleShopMVC:/app:rw"
+    - "/Users/andresalonzo/RiderProjects/SimpleShop:/src:rw"
+    working_dir: "/app"
